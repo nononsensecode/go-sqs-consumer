@@ -4,12 +4,10 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/sqs/types"
 )
 
-type Event string
-
 const (
-	EventReceiveMessage      Event = "ReceiveMessage"
-	EventProcessMessage            = "ProcessMessage"
-	EventReceiveMessageError       = "ReceiveMessageError"
+	EventReceiveMessage      string = "ReceiveMessage"
+	EventProcessMessage      string = "ProcessMessage"
+	EventReceiveMessageError string = "ReceiveMessageError"
 )
 
 type OnReceiveMessage func(messages []types.Message)

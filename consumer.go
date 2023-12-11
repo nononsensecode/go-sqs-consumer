@@ -18,7 +18,7 @@ type Worker struct {
 	Config *Config
 	Input  *sqs.ReceiveMessageInput
 	Sqs    SQSAPI
-	Events map[Event]interface{}
+	Events map[string]interface{}
 }
 
 type Opt func(*Config)
@@ -49,7 +49,7 @@ func New(sqsClient SQSAPI, opts ...Opt) (*Worker, error) {
 	worker := &Worker{
 		Config: config,
 		Sqs:    sqsClient,
-		Events: make(map[Event]interface{}),
+		Events: make(map[string]interface{}),
 	}
 
 	worker.SetConfig(config)
@@ -146,7 +146,7 @@ func (w *Worker) SetSqs(sqs SQSAPI) {
 	w.Sqs = sqs
 }
 
-func (w *Worker) On(event Event, callback any) {
+func (w *Worker) On(event string, callback any) {
 	switch event {
 	case EventReceiveMessage:
 		cb, _ := callback.(OnReceiveMessage)
