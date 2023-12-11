@@ -4,7 +4,7 @@ SQS Consumer &amp; Worker for Go
 ## Install
 
 ```console
-go get github.com/haijianyang/go-sqs-consumer
+go get github.com/nononsensecode/go-sqs-consumer
 ```
 
 ## Quick Start
