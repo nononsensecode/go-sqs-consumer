@@ -243,6 +243,7 @@ func (w *Worker) handleMessage(message types.Message, handler Handler) error {
 		ReceiptHandle: message.ReceiptHandle,
 	}
 
+	log.Printf("[SQS] Deleting message")
 	output, err := w.Sqs.DeleteMessage(context.TODO(), input)
 	if err != nil {
 		log.Printf("[SQS] DeleteMessage error: %v %v", err, output)
