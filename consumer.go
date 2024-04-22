@@ -36,6 +36,7 @@ func New(sqsClient SQSAPI, opts ...Opt) (*Worker, error) {
 		WaitTimeSeconds:     5,
 		Idle:                aws.Int64(0),
 		Sleep:               aws.Int64(0),
+		ShouldDelete:        true,
 	}
 
 	for _, opt := range opts {
@@ -241,6 +242,10 @@ func (w *Worker) handleMessage(message types.Message, handler Handler) error {
 	input := &sqs.DeleteMessageInput{
 		QueueUrl:      w.Input.QueueUrl,
 		ReceiptHandle: message.ReceiptHandle,
+	}
+
+	if !w.Config.ShouldDelete {
+		return nil
 	}
 
 	log.Printf("[SQS] Deleting message")

@@ -10,11 +10,12 @@ type Config struct {
 	AttributeNames          []types.QueueAttributeName `json:"attributeNames"`      // ["All"]
 	MaxNumberOfMessages     int32                      `json:"maxNumberOfMessages"` // 1 - 10, 1
 	MessageAttributeNames   []string                   `json:"messageAttributeNames"`
-	queueUrl                *string                    `json:"queueUrl"`
+	QueueUrl                *string                    `json:"queueUrl"`
 	QueueName               *string                    `json:"queueName"`
 	ReceiveRequestAttemptId *string                    `json:"receiveRequestAttemptId"`
 	VisibilityTimeout       int32                      `json:"visibilityTimeout"` // 0 - 43200, 30
 	WaitTimeSeconds         int32                      `json:"waitTimeSeconds"`   // 0 - 20, 0, 10
+	ShouldDelete            bool                       `json:"shouldDelete"`
 
 	Idle  *int64 `json:"idle"`
 	Sleep *int64 `json:"sleep"`

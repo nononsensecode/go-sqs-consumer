@@ -31,6 +31,7 @@ func main() {
 	client := sqs.NewFromConfig(cfg)
 	worker, err := consumer.New(client, func(c *consumer.Config) {
 		c.QueueName = aws.String("event-dev-queue.fifo")
+		c.ShouldDelete = true
 	})
 	if err != nil {
 		log.Fatalf("unable to create worker, %v", err)
